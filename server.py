@@ -62,7 +62,7 @@ def bodmas_chart_image() -> bytes:
     Returns the image as bytes.
     """
     try:
-        image_path = Path("resources/bodmas_chart.jpg")
+        image_path = Path("resources/bodmas.jpg")
         with open(image_path, "rb") as f:
             return f.read()
     except FileNotFoundError:
