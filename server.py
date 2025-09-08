@@ -48,8 +48,7 @@ Please evaluate: {expression}
 
 Remember to always follow BODMAS order and use the tools for each calculation step."""
 
-# Resource for BODMAS image - return bytes for blob field
-
+# Resource for BODMAS image
 @mcp.resource(
     uri="file://resources/bodmas_chart.jpg",
     name="bodmas_chart.jpg", 
@@ -179,7 +178,15 @@ def power(base: float, exponent: float) -> float:
     result = base ** exponent
     return result
 
-# # Example of how you might run the server
-# if __name__ == "__main__":
-#     # This starts your server listening for requests like binding to a port
-#     mcp.run()
+# Create ASGI app for cloud deployment
+app = mcp.serve().asgi()
+
+# For local testing and cloud deployment
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=8080,
+        log_level="info"
+    )
