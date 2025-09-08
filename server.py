@@ -179,7 +179,7 @@ def power(base: float, exponent: float) -> float:
     result = base ** exponent
     return result
 
-# Example of how you might run the server
-if __name__ == "__main__":
-    # This starts your server listening for requests like binding to a port
-    mcp.run()
+# # Example of how you might run the server
+# if __name__ == "__main__":
+#     # This starts your server listening for requests like binding to a port
+#     mcp.run()
