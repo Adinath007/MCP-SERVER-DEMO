@@ -49,6 +49,7 @@ Please evaluate: {expression}
 Remember to always follow BODMAS order and use the tools for each calculation step."""
 
 # Resource for BODMAS image - return bytes for blob field
+
 @mcp.resource(
     uri="file://resources/bodmas_chart.jpg",
     name="bodmas_chart.jpg", 
@@ -58,12 +59,19 @@ Remember to always follow BODMAS order and use the tools for each calculation st
 def bodmas_chart_image() -> bytes:
     """
     Visual chart showing BODMAS order of operations.
-    Returns the image as bytes (FastMCP will encode to base64 automatically).
+    Returns the image as bytes.
     """
-    # Load from local file and return raw bytes
-    image_path = Path("resources/bodmas_chart.jpg")
-    with open(image_path, "rb") as f:
-        return f.read()
+    try:
+        image_path = Path("resources/bodmas_chart.jpg")
+        with open(image_path, "rb") as f:
+            return f.read()
+    except FileNotFoundError:
+        # Return empty bytes if file not found
+        print("Warning: bodmas_chart.jpg not found")
+        return b""
+    except Exception as e:
+        print(f"Error loading image: {e}")
+        return b""
 
 # Additional text resource for BODMAS guide
 @mcp.resource(
